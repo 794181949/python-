@@ -1,0 +1,187 @@
+1.字符串使用基础：
+  word = 'python'
+  word[:2] / word[2:] / word[::2] /word[1::2]/ word[::-1]
+  
+ 
+
+2.进阶石头剪刀布的练习题:
+import random
+choic = ['rock','cut','paper']
+win =[['rock','cut'],['cut','paper'],['paper','rock']]
+computer = random.choice(choic)
+ind = int(input('选择你的1 rock,2 cut,3 paper之一')
+player = choic[ind]
+if player == computer:
+  print('your choice is the same as computer')
+ elif [player,computer] in win:
+  print('you win')
+ else:
+  print('you lose')
+  
+ 
+ 3.循环：
+  while 中 continue 是跳过本次循环，break是循环体内代码不再执行
+  for 循环可以遍历数据对象
+  
+ 4.range用法和配合for可以一起使用
+  range(6,11) # [6,7,8,9,10]
+  range(10,0,-1) #[10,9,8,7,6,5,4,3,2,1]
+  
+ 5.列表实现fibonaci：
+  fib=[0,1]
+  for i in range(8):
+    fib.append(fib[-1] + fib[-2])
+ 6. 9*9乘法表
+  for i in range(1,10):
+    for j in range(1,i):
+      print(f'{i} * {j} = {i*j}', end = '')
+    print()
+
+7.列表解析：
+  [10 + 5]
+  [10 + 5 for i in range(10)] #在列表中输出15这个数字10次
+  [10 + i for i in range(1,11)] #10+i 来自于i的循环
+  [10 + i for i in range(10) if i % 2] #用if过滤i，只有2的倍数才能加入
+  ['192.168.1.%s'% i for i in range(1,225)] #生成ip地址列表
+
+8.读取文件的基础操作：
+  f=open('/temp/glo')#以r的只读模式读取文件
+  data = f.read()
+  f.readline #读一行
+  f.readlines #读每一行
+  f.tell #查看指针位置
+  f.seek(偏移位置数量，位置选择默认开头)  # 第一个数字是偏移量，第2位是数字是相对位置。
+	                                       # 相对位置0表示开头，1表示当前，2表示结尾
+  f.close()
+  -----------------------------------------------------------
+  	f = open('/tmp/myfile', 'w')  # 'w'打开文件，如果文件不存在则创建
+	f.write('hello world!\n')
+	f.flush()  # 立即将缓存中的数据同步到磁盘
+	f.writelines(['2nd line.\n', 'new line.\n'])
+	f.close()  # 关闭文件的时候，数据保存到磁盘
+  ------------------------------------
+  with open('/temp/glo') as f:
+    print(f.readline()) #用了with 就不用关闭
+
+
+9.函数使用:
+  def gen_fib(l):
+    fib = [0,1]
+    for i in range(l - len(fib)):
+      fib.append(fib[-1] + fib[-2])
+    return fib
+    
+10.序列对象方法：
+  list('hello') # ['h', 'e', 'l', 'l', 'o']
+  list((10,20,30)) # [10, 20, 30]  元组转列表
+  str(['h', 'e', 'l', 'l', 'o'])  # 将列表转成字符串
+  tuple('hello')  # ('h', 'e', 'l', 'l', 'o')
+  num_list = [randint(1, 100) for i in range(10)]
+  
+  alist = [10, 'john']
+  list(enumerate(alist))  # [(0, 10), (1, 'john')]
+  
+  atuple = (96, 97, 40, 75, 58, 34, 69, 29, 66, 90)
+  for i in reversed(atuple):
+    print(i, end = ',')
+    
+11.字符串方法：
+	py_str = 'hello world!'
+	py_str.capitalize()
+	py_str.title() #把每个字符串的第一个字母大写
+	py_str.center(50) #把字符串放在中间
+	py_str.center(50, '#') #在左右边空白处加上#
+	py_str.ljust(50, '*') #左移50空格，右边都加上*
+	py_str.rjust(50, '*') #右移50空格，左边都加上*
+	py_str.count('l')  # 统计l出现的次数
+	py_str.count('lo')
+	py_str.endswith('!')  # 以!结尾吗？
+	py_str.endswith('d!')
+	py_str.startswith('a')  # 以a开头吗？
+	py_str.islower()  # 字母都是小写的？其他字符不考虑
+	py_str.isupper()  # 字母都是大写的？其他字符不考虑
+	'Hao123'.isdigit()  # 所有字符都是数字吗？
+	'Hao123'.isalnum()  # 所有字符都是字母数字？
+	'  hello\t    '.strip()  # 去除两端空白字符，常用
+	'  hello\t    '.lstrip()
+	'  hello\t    '.rstrip()
+	'how are you?'.split() #按照空格分开生成列表
+	'hello.tar.gz'.split('.')
+	'.'.join(['hello', 'tar', 'gz'])
+	'-'.join(['hello', 'tar', 'gz'])
+  
+12.列表方法：
+	alist = [1, 2, 3, 'bob', 'alice']
+	alist[0] = 10
+	alist[1:3] = [20, 30]
+	alist[2:2] = [22, 24, 26, 28]
+	alist.append(100)
+	alist.remove(24)  # 删除第一个24
+	alist.index('bob')  # 返回下标
+	blist = alist.copy()  # 相当于blist = alist[:]
+	alist.insert(1, 15)  # 向下标为1的位置插入数字15
+	alist.pop()  # 默认弹出最后一项
+	alist.pop(2) # 弹出下标为2的项目
+	alist.pop(alist.index('bob'))
+	alist.sort()
+	alist.reverse()
+	alist.count(20)  # 统计20在列表中出现的次数
+	alist.clear()  # 清空
+	alist.append('new')
+	alist.extend('new')
+	alist.extend(['hello', 'world', 'hehe'])
+
+
+13.字典基础用法：
+  	adict = dict()  # {}
+	dict(['ab', 'cd'])
+	bdict = dict([('name', 'bob'),('age', 25)]) 从列表中创建字典
+	{}.fromkeys(['zhangsan', 'lisi', 'wangwu'], 11)
+	
+	for key in bdict:
+	    print('%s: %s' % (key, bdict[key]))
+	
+	print("%(name)s: %(age)s" % bdict)
+	
+	bdict['name'] = 'tom' 创建字典
+	bdict['email'] = 'tom@tedu.cn'
+	
+	del bdict['email'] 删除字典
+	bdict.pop('age')
+	bdict.clear()
+ 
+ 14. 字典常用方法：
+ 	adict = dict([('name', 'bob'),('age', 25)])
+	len(adict)
+	hash(10)  # 判断给定的数据是不是不可变的，不可变数据才能作为key
+	adict.keys()
+	adict.values()
+	adict.items()
+	# get方法常用，重要
+	adict.get('name')  # 找values：取出字典中name对应的value，如果没有返回None
+	print(adict.get('qq'))  # None
+	print(adict.get('qq', 'not found'))  # 没有qq，返回指定内容
+	print(adict.get('age', 'not found'))
+	adict.update({'phone': '13455667788'})
+  
+  15.集合常用方法：
+    	myset = set('hello')
+	len(myset)
+	for ch in myset:
+	    print(ch)
+	
+	aset = set('abc')
+	bset = set('cde')
+	aset & bset  # 交集
+	aset.intersection(bset)  # 交集
+	aset | bset  # 并集
+	aset.union(bset)  # 并集
+	aset - bset  # 差补
+	aset.difference(bset)  # 差补
+	aset.add('new')
+	aset.update(['aaa', 'bbb'])
+	aset.remove('bbb')
+	cset = set('abcde')
+	dset = set('bcd')
+	cset.issuperset(dset)  # cset是dset的超集么？
+	cset.issubset(dset)  # cset是dset的子集么？
